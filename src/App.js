@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+//logic and apperance in one = react. Everything inside return statement is the visual stuff
+//everything above return statement is the logic
+
+import React from 'react'
+import {Route, BrowserRouter as Router, Routes} from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import PostPage from './pages/PostPage'
+import NewPostPage from './pages/NewPostPage'
+import NavBar from './components/NavBar'
+
+
+//renamed switch to routes. routes tag change between display pages, depending on the path.
+//NavBar is always displaying no matter what path you are in
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <NavBar />
+      <Routes>
+        <Route path='/' element={<HomePage/>} />
+        <Route path='/posts/new' element={<NewPostPage/>} />
+        <Route path='/posts/:id' element={<PostPage/>} />
+      </Routes>
+    </Router>
+    
   );
 }
 
